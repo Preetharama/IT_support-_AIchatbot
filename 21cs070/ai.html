@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="aistyle.css">
+    
+</head>
+
+<body>
+    <div id="chat-container">
+        <div id="chatbox">
+            <h3>IT SUPPORTIVE CHATBOT</h3>
+        </div>
+        <div id="input-container">
+            <input type="text" id="userInput" placeholder="Ask your queries?!" autocomplete="off">
+            <button class="button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        displayMessage("Chatbot: Hi! Let's discuss about troubleshooting💬✍️👥💬?");
+
+        function sendMessage() {
+            var userInput = document.getElementById("userInput");
+            var message = userInput.value.trim(); 
+
+            if (message === "") return; 
+
+            displayMessage("You: " + message);
+
+            setTimeout(function () {
+                var response;
+                switch (message.toLowerCase()) {
+                    case "hi":
+                    case "hello":
+                    case "hey":
+                        response = "Chatbot: Hi!";
+                        break;
+                    case "troubleshooting":
+                        response = "Chatbot: Troubleshooting is the process of identifying and resolving problems in a system or device. It involves steps like identifying the issue, gathering information, isolating the cause, formulating a solution, implementing it, verifying the fix, and documenting the process. The goal is to restore normal functionality.";
+                        break;
+                    case "how are you":
+                    case "doing":
+                    case "what are you doing":
+                    case "who are you":
+                        response = "Chatbot: I am an intelligent AI chatbot, you can ask any query!";
+                        break;
+                    case "what is your purpose":
+                    case "are you related to ai":
+                    case "are you related to a robot":
+                    case "can you answer my queries":
+                        response = "Chatbot: I am a fledgling IT tool, tackling basic problems for now. Ask away, and I'll help within my current abilities.";
+                        break;
+                    case "bye":
+                        response = "Chatbot: Bye! Happy to solve your query. See you again with another question.";
+                        break;
+                    default:
+                        response = "Chatbot: Sorry, I'm unable to understand your question. Can you please try again?";
+                        break;
+                }
+                displayMessage(response);
+            }, 500);
+
+            userInput.value = '';
+        }
+
+        function displayMessage(message) {
+            var chatbox = document.getElementById("chatbox");
+            var messageElement = document.createElement("p");
+            messageElement.textContent = message;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function popupmsg() {
+    alert("You can only ask questions like:\n1.hi ,  hello ,  hey.  \n2. troubleshooting \n3. how are you? who are you, doing.  \n4. what is your purpose, are you related to ai, are you related to a robot, can you answer my queries \n5. bye");
+}
+
+        window.onload = popupmsg; 
+
+        // Add event listener for Enter key press
+        document.getElementById("userInput").addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) { // Enter key code is 13
+                event.preventDefault();
+                sendMessage(); // Call sendMessage function when Enter key is pressed
+            }
+        });
+
+    </script>
+</body>
+
+</html>
